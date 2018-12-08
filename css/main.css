@@ -1,0 +1,22 @@
+.container {
+  margin: 30px;
+}
+
+.board {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+  max-width: 600px;
+  padding: 2%;
+  background-color:grey;
+}
+
+.card {
+  width: 20%;
+  padding-top: 20%;
+  margin: 2%;
+  background-color: wheat;
+}
+

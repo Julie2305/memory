@@ -14,9 +14,24 @@
 }
 
 .card {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
   width: 20%;
-  padding-top: 20%;
+  padding: 5% 0;
   margin: 2%;
   background-color: wheat;
+  color: wheat;
+  font-size: 40px;
 }
+
+.card--open {
+  cursor: auto;
+  color: black;
+}
+
+.card--match {
+  background-color: green;
+}
+
 

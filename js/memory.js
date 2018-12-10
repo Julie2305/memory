@@ -1,10 +1,8 @@
 const cards = document.querySelectorAll('.card');
+const retry = document.querySelector('.fa-repeat');
 const numberOfCards = cards.length;
-let array = [];
-let flippedCards = [];
 
-createRandomArray();
-setOrderOfCards();
+setUpBoard();
 
 cards.forEach((card) => {
   card.addEventListener('click', () => {
@@ -14,9 +12,21 @@ cards.forEach((card) => {
   });
 });
 
+retry.addEventListener('click', () => {
+  resetBoard();
+})
+
+function setUpBoard() {
+  flippedCards = [];
+  array = [];
+  createRandomArray();
+  setOrderOfCards();
+}
+
 function createRandomArray() {
   let i = 0;
   while (i < numberOfCards) {
+    window.console.log('hallo')
     let numberInArray = getRandomNumber()
     while (array.includes(numberInArray)) {
       numberInArray = getRandomNumber();
@@ -75,3 +85,12 @@ function checkFilppedCards() {
     }, 1000);
   }
 };
+
+function resetBoard() {
+  const openCards = document.querySelectorAll('.card--open');
+  openCards.forEach((card) => {
+    card.className = '';
+    card.classList.add('card');
+  });
+  setUpBoard();
+}

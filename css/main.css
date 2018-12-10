@@ -17,7 +17,15 @@ h1 {
 }
 
 section{
-  margin: 0 40px;
+  margin: 0 40px 20px 40px;
+}
+
+.infoPanel {
+  display: flex;
+}
+
+.restart {
+  cursor: pointer
 }
 
 .board {
@@ -30,7 +38,7 @@ section{
   max-width: 600px;
   padding: 10px;
   /* margin: 20px; */
-  background-color:grey;
+  background-color: grey;
 }
 
 .card {

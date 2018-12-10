@@ -1,5 +1,6 @@
 const cards = document.querySelectorAll('.card');
 const retry = document.querySelector('.fa-repeat');
+const finish = document.querySelector('.gameComplete');
 const numberOfCards = cards.length;
 
 setUpBoard();
@@ -15,6 +16,8 @@ cards.forEach((card) => {
 retry.addEventListener('click', () => {
   resetBoard();
 })
+
+
 
 function setUpBoard() {
   flippedCards = [];
@@ -66,12 +69,11 @@ function checkFilppedCards() {
   })
 
   if (icons[0] === icons[1]) {
-    const matchedIcons = document.querySelectorAll(`.${icons[1]}`)
+    const matchedIcons = document.querySelectorAll(`.${icons[1]}`);
     matchedIcons.forEach((matchedIcon) => {
       const matchedCard = matchedIcon.parentElement;
       matchedCard.classList.add('card--match')
     })
-
   }
   else {
     const misMatchedCards = document.querySelectorAll('.card--open:not(.card--match)')
@@ -84,6 +86,9 @@ function checkFilppedCards() {
       })
     }, 1000);
   }
+  if (document.querySelectorAll('.card--match').length === numberOfCards){
+    gameComplete();
+  }
 };
 
 function resetBoard() {
@@ -92,5 +97,10 @@ function resetBoard() {
     card.className = '';
     card.classList.add('card');
   });
+  finish.style.display = 'none'; 
   setUpBoard();
+}
+
+function gameComplete() {
+  finish.style.display = 'block'; 
 }

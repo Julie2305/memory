@@ -65,11 +65,9 @@ function checkFilppedCards() {
   }
   else {
     const misMatchedCards = document.querySelectorAll('.card--open:not(.card--match)')
-    setTimeout(() => {
-      misMatchedCards.forEach((misMatchedCard) => {
-        misMatchedCard.classList.add('card--mismatch');
-      })
-    }, 100);
+    misMatchedCards.forEach((misMatchedCard) => {
+      misMatchedCard.classList.add('card--mismatch');
+    });
     setTimeout(() => {
       misMatchedCards.forEach((misMatchedCard) => {
         misMatchedCard.classList.remove('card--open', 'card--mismatch');

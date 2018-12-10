@@ -34,4 +34,8 @@
   background-color: green;
 }
 
+.card--mismatch {
+  background-color: red;
+}
+
 

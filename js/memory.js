@@ -43,7 +43,12 @@ function checkFilppedCards() {
     const misMatchedCards = document.querySelectorAll('.card--open:not(.card--match)')
     setTimeout(() => {
       misMatchedCards.forEach((misMatchedCard) => {
-        misMatchedCard.classList.remove('card--open');
+        misMatchedCard.classList.add('card--mismatch');
+      })
+    }, 100);
+    setTimeout(() => {
+      misMatchedCards.forEach((misMatchedCard) => {
+        misMatchedCard.classList.remove('card--open', 'card--mismatch');
       })
     }, 1000);
   }

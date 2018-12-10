@@ -1,5 +1,23 @@
+body{
+  /* margin: auto; */
+  font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+  font-size: 25px;
+}
 .container {
-  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 850px;
+  margin: auto;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+section{
+  margin: 0 40px;
 }
 
 .board {
@@ -8,8 +26,10 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   width: 100%;
+  min-width: 325px;
   max-width: 600px;
-  padding: 2%;
+  padding: 10px;
+  /* margin: 20px; */
   background-color:grey;
 }
 
@@ -17,8 +37,9 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
+  min-width: 50px;
   width: 20%;
-  padding: 5% 0;
+  padding: 5.5% 0;
   margin: 2%;
   background-color: wheat;
   color: wheat;

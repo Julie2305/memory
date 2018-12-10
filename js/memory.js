@@ -14,6 +14,30 @@ cards.forEach((card) => {
   });
 });
 
+function createRandomArray() {
+  let i = 0;
+  while (i < numberOfCards) {
+    let numberInArray = getRandomNumber()
+    while (array.includes(numberInArray)) {
+      numberInArray = getRandomNumber();
+    }
+    array.push(numberInArray)
+    i++;
+  }
+};
+
+function getRandomNumber() {
+  const randomNumber = Math.floor(Math.random() * numberOfCards);
+  return randomNumber;
+};
+
+function setOrderOfCards() {
+  let i = 0;
+  cards.forEach((card) => {
+    card.style.order = array[i]
+    i++;
+  })
+};
 
 function flipCard(card) {
   card.classList.add('card--open');
@@ -52,29 +76,4 @@ function checkFilppedCards() {
       })
     }, 1000);
   }
-}
-
-function createRandomArray() {
-  let i = 0;
-  while (i < numberOfCards) {
-    let numberInArray = getRandomNumber()
-    while (array.includes(numberInArray)) {
-      numberInArray = getRandomNumber();
-    }
-    array.push(numberInArray)
-    i++;
-  }
-};
-
-function setOrderOfCards() {
-  let i = 0;
-  cards.forEach((card) => {
-    card.style.order = array[i]
-    i++;
-  })
-};
-
-function getRandomNumber() {
-  const randomNumber = Math.floor(Math.random() * numberOfCards);
-  return randomNumber;
 };

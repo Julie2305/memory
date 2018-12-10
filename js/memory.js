@@ -18,7 +18,6 @@ cards.forEach((card) => {
 function flipCard(card) {
   card.classList.add('card--open');
   flippedCards.push(card);
-  window.console.log('flipped', flippedCards);
   if (flippedCards.length === 2) {
     checkFilppedCards();
     flippedCards = [];
@@ -41,11 +40,10 @@ function checkFilppedCards() {
 
   }
   else {
-    const misMatchedIcons = document.querySelectorAll('.card--open :not(.card--match)')
+    const misMatchedCards = document.querySelectorAll('.card--open:not(.card--match)')
     setTimeout(() => {
-      misMatchedIcons.forEach((misMatchedIcon) => {
-        const misMastchedCard = misMatchedIcon.parentElement;
-        misMastchedCard.classList.remove('card--open');
+      misMatchedCards.forEach((misMatchedCard) => {
+        misMatchedCard.classList.remove('card--open');
       })
     }, 1000);
   }

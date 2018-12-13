@@ -2,12 +2,16 @@ const cards = document.querySelectorAll('.card');
 const retry = document.querySelector('.fa-repeat');
 const finish = document.querySelector('.gameComplete');
 const numberOfCards = cards.length;
+let cardsOpen; 
+let flippedCards;
+let array;
+let moves;
 
 setUpBoard();
 
 cards.forEach((card) => {
   card.addEventListener('click', () => {
-    if (!card.classList.contains('card--open')) {
+    if (!cardsOpen && !card.classList.contains('card--open')) {
       flipCard(card)
     }
   });
@@ -20,8 +24,10 @@ retry.addEventListener('click', () => {
 
 
 function setUpBoard() {
+  cardsOpen = false; 
   flippedCards = [];
   array = [];
+  moves = 0;
   createRandomArray();
   setOrderOfCards();
 }
@@ -29,7 +35,6 @@ function setUpBoard() {
 function createRandomArray() {
   let i = 0;
   while (i < numberOfCards) {
-    window.console.log('hallo')
     let numberInArray = getRandomNumber()
     while (array.includes(numberInArray)) {
       numberInArray = getRandomNumber();
@@ -62,6 +67,7 @@ function flipCard(card) {
 };
 
 function checkFilppedCards() {
+  cardsOpen = true;
   const icons = [];
   flippedCards.forEach((flippedCard) => {
     const icon = flippedCard.querySelector('.fa').classList;
@@ -69,25 +75,29 @@ function checkFilppedCards() {
   })
 
   if (icons[0] === icons[1]) {
+    addMove();
     const matchedIcons = document.querySelectorAll(`.${icons[1]}`);
     matchedIcons.forEach((matchedIcon) => {
       const matchedCard = matchedIcon.parentElement;
       matchedCard.classList.add('card--match')
+      cardsOpen = false;
     })
   }
   else {
     const misMatchedCards = document.querySelectorAll('.card--open:not(.card--match)')
+    addMove();
     misMatchedCards.forEach((misMatchedCard) => {
       misMatchedCard.classList.add('card--mismatch');
     });
     setTimeout(() => {
       misMatchedCards.forEach((misMatchedCard) => {
         misMatchedCard.classList.remove('card--open', 'card--mismatch');
+        cardsOpen = false;
       })
     }, 1000);
   }
   if (document.querySelectorAll('.card--match').length === numberOfCards){
-    gameComplete();
+    finish.style.display = 'block'; 
   }
 };
 
@@ -101,6 +111,9 @@ function resetBoard() {
   setUpBoard();
 }
 
-function gameComplete() {
-  finish.style.display = 'block'; 
+function addMove() {
+  moves++
+  const moveCounter = document.querySelector('.moveCounter')
+  moveCounter.innerHTML = `${moves} Moves`
+  window.console.log(moveCounter);
 }

@@ -22,9 +22,10 @@ section{
 
 .infoPanel {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   width: 100%;
+  min-width: 325px;
   max-width: 600px;
 }
 
@@ -87,4 +88,11 @@ section{
   
 }
 
+.star {
+  color: green;
+}
+
+.lostStar {
+  color: red;
+}
 

@@ -1,27 +1,35 @@
 body{
-  /* margin: auto; */
   font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
   font-size: 25px;
+  margin: auto;
+  max-width: 850px;
 }
 .container {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  max-width: 850px;
-  margin: auto;
+  padding: 0 40px;
+  
+}
+
+header {
+  display: flex;
+  justify-content: center;
 }
 
 h1 {
   text-transform: uppercase;
+  color: #67000c;
 }
 
 section{
-  margin: 0 40px 20px 40px;
+  margin-bottom: 20px;
 }
 
 .infoPanel {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
@@ -38,15 +46,18 @@ section{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  width: 100%;
-  min-width: 325px;
-  max-width: 600px;
   padding: 10px;
-  background-color: grey;
-  /* opacity: 0.5; */
+  border:3px solid #67000c;
+  background-color: white;
+box-shadow: 15px 15px 5px lightgray;
+  border-radius: 10px;
 }
 
 .card {
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+  
+  box-sizing: border-box;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -54,26 +65,40 @@ section{
   width: 20%;
   padding: 5.5% 0;
   margin: 2%;
-  background-color: wheat;
-  color: wheat;
+  
   font-size: 40px;
+  border-radius: 10px;
+
+  border: 3px solid #67000c;
+  background-image: linear-gradient(to bottom right, white, #dfb53b);
+  box-shadow: 5px 5px 5px lightgray;
+}
+
+.back {
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
 }
 
 .card--open {
+  transform: rotateY(180deg);
+  color:#67000c;
+  border: 3px solid #67000c;
   cursor: auto;
-  color: black;
 }
 
 .card--match {
-  background-color: green;
+  background-image: linear-gradient(to bottom right, white, #94d0a2);
 }
 
 .card--mismatch {
-  background-color: red;
+  background-image: linear-gradient(to bottom right, white, #ff9da8);
 }
 
 .game{
   position: relative;
+  width: 100%;
+  min-width: 325px;
+  max-width: 600px;
 }
 
 .gameComplete{

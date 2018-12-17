@@ -83,18 +83,22 @@ function checkFilppedCards() {
   if (icons[0] === icons[1]) {
     addMove();
     const matchedIcons = document.querySelectorAll(`.${icons[1]}`);
-    matchedIcons.forEach((matchedIcon) => {
-      const matchedCard = matchedIcon.parentElement;
-      matchedCard.classList.add('card--match')
-      cardsOpen = false;
-    })
+    setTimeout(() => {
+      matchedIcons.forEach((matchedIcon) => {
+        const matchedCard = matchedIcon.parentElement;
+        matchedCard.classList.add('card--match')
+        cardsOpen = false;
+      })
+    }, 200);
   }
   else {
     const misMatchedCards = document.querySelectorAll('.card--open:not(.card--match)')
     addMove();
-    misMatchedCards.forEach((misMatchedCard) => {
-      misMatchedCard.classList.add('card--mismatch');
-    });
+    setTimeout(() => {
+      misMatchedCards.forEach((misMatchedCard) => {
+        misMatchedCard.classList.add('card--mismatch');
+      });
+    }, 200);
     setTimeout(() => {
       misMatchedCards.forEach((misMatchedCard) => {
         misMatchedCard.classList.remove('card--open', 'card--mismatch');

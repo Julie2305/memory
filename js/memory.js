@@ -79,7 +79,7 @@ function checkFilppedCards() {
     const icon = flippedCard.querySelector('.fa').classList;
     icons.push(icon[1]);
   })
-
+  window.console.log(icons);
   if (icons[0] === icons[1]) {
     addMove();
     const matchedIcons = document.querySelectorAll(`.${icons[1]}`);
@@ -156,7 +156,7 @@ function setTimer() {
 
     timeToDisplay = `${hours}:${minutes}:${seconds}`;
     timer.innerHTML = timeToDisplay;
-    
+
   }, 1000);
 }
 

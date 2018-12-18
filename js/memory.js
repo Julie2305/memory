@@ -32,7 +32,6 @@ function setUpBoard() {
   let randomArray = createRandomArray();
   setOrderOfCards(randomArray);
   timer.innerHTML = '00:00:00';
-  window.console.log('flip2')
 }
 
 function createRandomArray() {
@@ -81,7 +80,6 @@ function checkFilppedCards() {
     const icon = flippedCard.querySelector('.fa').classList;
     icons.push(icon[1]);
   })
-  window.console.log(icons);
   if (icons[0] === icons[1]) {
     addMove();
     const matchedIcons = document.querySelectorAll(`.${icons[1]}`);
@@ -117,7 +115,6 @@ function resetBoard() {
   stopTimer();
   const openCards = document.querySelectorAll('.card--open');
   openCards.forEach((card) => {
-    window.console.log('flip');
     card.className = '';
     card.classList.add('card');
   });
@@ -126,14 +123,14 @@ function resetBoard() {
 }
 
 function addMove() {
-  let loseStar = 13;
+  let loseStar = 2;
   moves++;
   moveCounter.innerHTML = `${moves} Moves`;
   if (moves === loseStar) {
     loseStar += 7;
-    let star = document.querySelector('.star')
-    star.classList.remove('star');
-    star.classList.add('lostStar');
+    let star = document.querySelector('.fa-star')
+    star.classList.remove('fa-star');
+    star.classList.add('fa-star-o');
   }
 }
 

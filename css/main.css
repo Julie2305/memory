@@ -71,7 +71,6 @@ box-shadow: 15px 15px 5px lightgray;
 
   border: 3px solid #67000c;
   background-image: linear-gradient(to bottom right, white, #dfb53b);
-  box-shadow: 5px 5px 5px lightgray;
 }
 
 .back {
@@ -110,14 +109,13 @@ box-shadow: 15px 15px 5px lightgray;
   top: 25%;
   left: 25%;
   background-color: pink;
-  
 }
 
-.star {
-  color: green;
+.fa-star{
+  color: #dfb53b;
 }
 
-.lostStar {
-  color: red;
+.fa-star-o {
+  color: #67000c;
 }
 

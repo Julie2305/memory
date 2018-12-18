@@ -123,7 +123,7 @@ function resetBoard() {
 }
 
 function addMove() {
-  let loseStar = 2;
+  let loseStar = 13;
   moves++;
   moveCounter.innerHTML = `${moves} Moves`;
   if (moves === loseStar) {

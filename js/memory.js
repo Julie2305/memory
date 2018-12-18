@@ -2,13 +2,12 @@ const cards = document.querySelectorAll('.card');
 const retry = document.querySelector('.fa-repeat');
 const finish = document.querySelector('.gameComplete');
 const moveCounter = document.querySelector('.moveCounter');
+const timer = document.querySelector('.timer');
 const numberOfCards = cards.length;
-let timer;
 let cardsOpen;
 let flippedCards;
-let array;
 let moves;
-let loseStar = 13;
+let startTimer;
 
 setUpBoard();
 
@@ -29,13 +28,15 @@ retry.addEventListener('click', () => {
 function setUpBoard() {
   cardsOpen = false;
   flippedCards = [];
-  array = [];
   moves = 0;
-  createRandomArray();
-  setOrderOfCards();
+  let randomArray = createRandomArray();
+  setOrderOfCards(randomArray);
+  timer.innerHTML = '00:00:00';
+  window.console.log('flip2')
 }
 
 function createRandomArray() {
+  let array = [];
   let i = 0;
   while (i < numberOfCards) {
     let numberInArray = getRandomNumber()
@@ -45,6 +46,7 @@ function createRandomArray() {
     array.push(numberInArray)
     i++;
   }
+  return array
 };
 
 function getRandomNumber() {
@@ -52,10 +54,10 @@ function getRandomNumber() {
   return randomNumber;
 };
 
-function setOrderOfCards() {
+function setOrderOfCards(randomArray) {
   let i = 0;
   cards.forEach((card) => {
-    card.style.order = array[i]
+    card.style.order = randomArray[i]
     i++;
   })
 };
@@ -115,6 +117,7 @@ function resetBoard() {
   stopTimer();
   const openCards = document.querySelectorAll('.card--open');
   openCards.forEach((card) => {
+    window.console.log('flip');
     card.className = '';
     card.classList.add('card');
   });
@@ -123,6 +126,7 @@ function resetBoard() {
 }
 
 function addMove() {
+  let loseStar = 13;
   moves++;
   moveCounter.innerHTML = `${moves} Moves`;
   if (moves === loseStar) {
@@ -137,10 +141,9 @@ function setTimer() {
   let time = { hours: 0, minutes: 0, seconds: 0 };
   let minutes = '00'
   let hours = '00' 
-  let timer = document.querySelector('.timer');
   let seconds, timeToDisplay;
 
-  setInterval(() => {
+  startTimer = setInterval(() => {
     time.seconds += 01;
     if (time.seconds < 10) {
       seconds = formatTime(time.seconds);
@@ -165,10 +168,9 @@ function setTimer() {
 }
 
 function formatTime(time) {
-  window.console.log('hallo')
   return ('0' + time).slice(-2);
 }
 
 function stopTimer() {
-  clearInterval(timer);
+  clearInterval(startTimer);
 }

@@ -1,3 +1,4 @@
+const board = document.querySelector('.board');
 const cards = document.querySelectorAll('.card');
 const retry = document.querySelector('.fa-repeat');
 const finish = document.querySelector('.gameComplete');
@@ -12,19 +13,16 @@ let startTimer;
 
 setUpBoard();
 
-cards.forEach((card) => {
-  card.addEventListener('click', () => {
-    if (!cardsOpen && !card.classList.contains('card--open')) {
-      flipCard(card)
+board.addEventListener('click', (card) => {
+  window.console.log(card);
+    if (card.target.classList.contains('card') && !cardsOpen && !card.target.classList.contains('card--open')) {
+      flipCard(card.target)
     }
   });
-});
 
 retry.addEventListener('click', () => {
   resetBoard();
 })
-
-
 
 function setUpBoard() {
   cardsOpen = false;
@@ -75,41 +73,46 @@ function flipCard(card) {
 };
 
 function checkFilppedCards() {
-  cardsOpen = true;
   const icons = [];
+  
+  cardsOpen = true;
   flippedCards.forEach((flippedCard) => {
     const icon = flippedCard.querySelector('.fa').classList;
     icons.push(icon[1]);
   })
+
   if (icons[0] === icons[1]) {
-    addMove();
     const matchedIcons = document.querySelectorAll(`.${icons[1]}`);
+  
+    addMove();
     setTimeout(() => {
       matchedIcons.forEach((matchedIcon) => {
         const matchedCard = matchedIcon.parentElement;
         matchedCard.classList.add('card--match')
         cardsOpen = false;
+
         if (document.querySelectorAll('.card--match').length === numberOfCards) {
           stopTimer();
           let earnedStars = document.querySelectorAll('.fa-star').length;
           const congratulations = `<h3>Congratulations!</h3> 
           <p>You have earned ${earnedStars} stars by finshing this game in ${moves} moves.</p>
           <p>Time to finish the game: ${timeToDisplay}</p>
-          <p>Press the restart button to play again</p>`
-            finish.innerHTML = congratulations
+          <p>Press the restart button to play again</p>`;
+          finish.innerHTML = congratulations;
           finish.style.display = 'block';
         }
       })
     }, 200);
-  }
-  else {
+  } else {
     const misMatchedCards = document.querySelectorAll('.card--open:not(.card--match)')
+    
     addMove();
     setTimeout(() => {
       misMatchedCards.forEach((misMatchedCard) => {
         misMatchedCard.classList.add('card--mismatch');
       });
     }, 200);
+
     setTimeout(() => {
       misMatchedCards.forEach((misMatchedCard) => {
         misMatchedCard.classList.remove('card--open', 'card--mismatch');
@@ -117,11 +120,12 @@ function checkFilppedCards() {
       })
     }, 1000);
   }
-};
+}
 
 function resetBoard() {
-  stopTimer();
   const openCards = document.querySelectorAll('.card--open');
+
+  stopTimer();
   openCards.forEach((card) => {
     card.className = '';
     card.classList.add('card');
@@ -134,6 +138,7 @@ function addMove() {
   let loseStar = 13;
   moves++;
   moveCounter.innerHTML = `${moves} Moves`;
+  
   if (moves === loseStar) {
     loseStar += 7;
     let star = document.querySelector('.fa-star')

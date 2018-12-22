@@ -1,6 +1,6 @@
 body{
   font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
-  font-size: 25px;
+  font-size: 20px;
   margin: auto;
   max-width: 850px;
 }
@@ -22,6 +22,12 @@ h1 {
   text-transform: uppercase;
   color: #67000c;
 }
+
+h3 {
+  margin: 3px 0;
+}
+
+
 
 section{
   margin-bottom: 20px;
@@ -49,7 +55,7 @@ section{
   padding: 10px;
   border:3px solid #67000c;
   background-color: white;
-box-shadow: 15px 15px 5px lightgray;
+  box-shadow: 15px 15px 5px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
 }
 
@@ -66,7 +72,7 @@ box-shadow: 15px 15px 5px lightgray;
   padding: 5.5% 0;
   margin: 2%;
   
-  font-size: 40px;
+  font-size: 25px;
   border-radius: 10px;
 
   border: 3px solid #67000c;
@@ -101,14 +107,19 @@ box-shadow: 15px 15px 5px lightgray;
 }
 
 .gameComplete{
+  padding: 5px;
+  transition: all 1.0s ease;
   display: none;
   text-align: center;
   position: absolute;
-  width: 50%;
-  height: 50%;
-  top: 25%;
-  left: 25%;
-  background-color: pink;
+  width: 60%;
+  height: 60%;
+  top: 20%;
+  left: 20%;
+  background-image: linear-gradient(to bottom left, white, #ff9da8);
+  border: 5px solid #dfb53b;
+  border-radius: 10px;
+  box-shadow: 15px 15px 5px rgba(0, 0, 0, 0.5);
 }
 
 .fa-star{
@@ -117,5 +128,18 @@ box-shadow: 15px 15px 5px lightgray;
 
 .fa-star-o {
   color: #67000c;
+}
+
+@media (min-width: 500px) {
+  body {
+    font-size: 25px;
+  }
+  
+  .card {
+    font-size: 40px;
+  }
+
+
+
 }
 

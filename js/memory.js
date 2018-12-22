@@ -4,6 +4,7 @@ const finish = document.querySelector('.gameComplete');
 const moveCounter = document.querySelector('.moveCounter');
 const timer = document.querySelector('.timer');
 const numberOfCards = cards.length;
+let timeToDisplay;
 let cardsOpen;
 let flippedCards;
 let moves;
@@ -88,6 +89,14 @@ function checkFilppedCards() {
         const matchedCard = matchedIcon.parentElement;
         matchedCard.classList.add('card--match')
         cardsOpen = false;
+        if (document.querySelectorAll('.card--match').length === numberOfCards) {
+          let earnedStars = document.querySelectorAll('.fa-star').length;
+          const congratulations = `<h3>Congratulations!</h3> 
+          <p>You have earned ${earnedStars} stars by finshing this game in ${moves} moves.</p>
+          <p>Time to finish the game: ${timeToDisplay}</p>`
+            finish.innerHTML = congratulations
+          finish.style.display = 'block';
+        }
       })
     }, 200);
   }
@@ -105,9 +114,6 @@ function checkFilppedCards() {
         cardsOpen = false;
       })
     }, 1000);
-  }
-  if (document.querySelectorAll('.card--match').length === numberOfCards) {
-    finish.style.display = 'block';
   }
 };
 
@@ -138,7 +144,7 @@ function setTimer() {
   let time = { hours: 0, minutes: 0, seconds: 0 };
   let minutes = '00'
   let hours = '00' 
-  let seconds, timeToDisplay;
+  let seconds;
 
   startTimer = setInterval(() => {
     time.seconds += 01;

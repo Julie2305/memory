@@ -108,13 +108,14 @@ section{
 }
 
 .gameComplete{
+  box-sizing: border-box;
   padding: 5px;
   transition: all 1.0s ease;
   display: none;
   text-align: center;
   position: absolute;
-  width: 70%;
-  height: 70%;
+  width: 76%;
+  height: 76%;
   top: 12%;
   left: 12%;
   background-image: linear-gradient(to bottom left, white, #ff9da8);
@@ -142,6 +143,13 @@ section{
 
   .card {
     font-size: 40px;
+  }
+
+  .gameComplete {
+    width: 70%;
+    height: 70%;
+    top: 15%;
+    left: 15%;
   }
 }
 

@@ -3,22 +3,21 @@ const cards = document.querySelectorAll('.card');
 const retry = document.querySelector('.fa-repeat');
 const finish = document.querySelector('.gameComplete');
 const moveCounter = document.querySelector('.moveCounter');
-const timer = document.querySelector('.timer');
+const displayedTimer = document.querySelector('.timer');
 const numberOfCards = cards.length;
 let timeToDisplay;
-let cardsOpen;
-let flippedCards;
+let cardsOpen; // This variable is set to true when 2 cards are flipped, so during this stage you can not flip other cards because flipCard() will not be executed after a click.
+let flippedCards; // When flippedCards has a length of 2, the logic of comparing the cards needs to be executed.
 let moves;
-let startTimer;
+let timer;
 
 setUpBoard();
 
 board.addEventListener('click', (card) => {
-  window.console.log(card);
-    if (card.target.classList.contains('card') && !cardsOpen && !card.target.classList.contains('card--open')) {
-      flipCard(card.target)
-    }
-  });
+  if (card.target.classList.contains('card') && !cardsOpen && !card.target.classList.contains('card--open')) {
+    flipCard(card.target)
+  }
+});
 
 retry.addEventListener('click', () => {
   resetBoard();
@@ -30,10 +29,14 @@ function setUpBoard() {
   moves = 0;
   let randomArray = createRandomArray();
   setOrderOfCards(randomArray);
-  timer.innerHTML = '00:00:00';
+  displayedTimer.innerHTML = '00:00:00';
 }
 
 function createRandomArray() {
+  // I started this project before I read everything about it (some tips and tricks).
+  // I therefore missed the tip about suffle(). So I created 3 functions to randomly set the order of the cards myself.
+  // I know that the function createRandomArray() will not be very good for the performence when you have many many cards.
+  // But it works perfectly for 16 cards and I was to proud that I have created this myself to replace it with a set suffle().
   let array = [];
   let i = 0;
   while (i < numberOfCards) {
@@ -62,7 +65,8 @@ function setOrderOfCards(randomArray) {
 
 function flipCard(card) {
   if (moves === 0 && flippedCards.length === 0) {
-    setTimer();
+    // The timer starts after flipping the first card
+    startTimer();
   }
   card.classList.add('card--open');
   flippedCards.push(card);
@@ -73,7 +77,7 @@ function flipCard(card) {
 };
 
 function checkFilppedCards() {
-  const icons = [];
+  const icons = []; //The icons array will be filled with the class names of the icons of the flipped cards so they can be compared. 
   
   cardsOpen = true;
   flippedCards.forEach((flippedCard) => {
@@ -86,6 +90,7 @@ function checkFilppedCards() {
   
     addMove();
     setTimeout(() => {
+      // a timeout of 200ms is set to make the visuals of the flipping better. 
       matchedIcons.forEach((matchedIcon) => {
         const matchedCard = matchedIcon.parentElement;
         matchedCard.classList.add('card--match')
@@ -108,12 +113,14 @@ function checkFilppedCards() {
     
     addMove();
     setTimeout(() => {
+      // a timeout of 200ms is set to make the visuals of the flipping better. 
       misMatchedCards.forEach((misMatchedCard) => {
         misMatchedCard.classList.add('card--mismatch');
       });
     }, 200);
 
     setTimeout(() => {
+      // a timout of 1000ms is set so the player has time to check out the mismatched cards. 
       misMatchedCards.forEach((misMatchedCard) => {
         misMatchedCard.classList.remove('card--open', 'card--mismatch');
         cardsOpen = false;
@@ -130,7 +137,7 @@ function resetBoard() {
     card.className = '';
     card.classList.add('card');
   });
-  finish.style.display = 'none';
+  finish.style.display = 'none'; // This is needed when the player presses the retry button after finishing the game. 
   setUpBoard();
 }
 
@@ -147,15 +154,16 @@ function addMove() {
   }
 }
 
-function setTimer() {
+function startTimer() {
   let time = { hours: 0, minutes: 0, seconds: 0 };
   let minutes = '00'
   let hours = '00' 
   let seconds;
 
-  startTimer = setInterval(() => {
+  timer = setInterval(() => {
     time.seconds += 01;
     if (time.seconds < 10) {
+      // made an if condition, so this function will only be called when the second number is a single digit and then will be formatted into a double digit
       seconds = formatTime(time.seconds);
     } else {
       seconds = time.seconds;
@@ -172,7 +180,7 @@ function setTimer() {
     }
 
     timeToDisplay = `${hours}:${minutes}:${seconds}`;
-    timer.innerHTML = timeToDisplay;
+    displayedTimer.innerHTML = timeToDisplay;
 
   }, 1000);
 }
@@ -182,5 +190,5 @@ function formatTime(time) {
 }
 
 function stopTimer() {
-  clearInterval(startTimer);
+  clearInterval(timer);
 }

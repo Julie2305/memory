@@ -24,12 +24,14 @@ retry.addEventListener('click', () => {
 })
 
 function setUpBoard() {
+  let randomArray = createRandomArray();
   cardsOpen = false;
   flippedCards = [];
   moves = 0;
-  let randomArray = createRandomArray();
-  setOrderOfCards(randomArray);
+  moveCounter.innerHTML = `${moves} Moves`;
   displayedTimer.innerHTML = '00:00:00';
+  
+  setOrderOfCards(randomArray);
 }
 
 function createRandomArray() {

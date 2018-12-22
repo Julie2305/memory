@@ -90,10 +90,12 @@ function checkFilppedCards() {
         matchedCard.classList.add('card--match')
         cardsOpen = false;
         if (document.querySelectorAll('.card--match').length === numberOfCards) {
+          stopTimer();
           let earnedStars = document.querySelectorAll('.fa-star').length;
           const congratulations = `<h3>Congratulations!</h3> 
           <p>You have earned ${earnedStars} stars by finshing this game in ${moves} moves.</p>
-          <p>Time to finish the game: ${timeToDisplay}</p>`
+          <p>Time to finish the game: ${timeToDisplay}</p>
+          <p>Press the restart button to play again</p>`
             finish.innerHTML = congratulations
           finish.style.display = 'block';
         }

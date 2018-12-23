@@ -4,13 +4,13 @@ body{
   margin: auto;
   max-width: 850px;
 }
+
 .container {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   padding: 0 40px;
-  
 }
 
 header {
@@ -27,8 +27,6 @@ h3 {
   font-size: 25px;
   margin: 3px 0;
 }
-
-
 
 section{
   margin-bottom: 20px;
@@ -63,7 +61,6 @@ section{
 .card {
   transform-style: preserve-3d;
   transition: all 0.5s ease;
-  
   box-sizing: border-box;
   cursor: pointer;
   display: flex;
@@ -72,10 +69,8 @@ section{
   width: 20%;
   padding: 5.5% 0;
   margin: 2%;
-  
   font-size: 25px;
   border-radius: 10px;
-
   border: 2px solid #67000c;
   background-image: linear-gradient(to bottom right, white, #dfb53b);
 }

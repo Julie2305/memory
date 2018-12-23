@@ -134,22 +134,23 @@ function checkFilppedCards() {
 
 function resetBoard() {
   const openCards = document.querySelectorAll('.card--open');
+  const stars = document.querySelector('.rating').children;
+  finish.style.display = 'none'; // This is needed when the player presses the retry button after finishing the game. 
 
   stopTimer();
+  
   openCards.forEach((card) => {
     card.className = '';
     card.classList.add('card');
   });
 
-  const stars = document.querySelector('.rating').children;
-  stars.forEach((star) => {
-    if (star.classList.contains('fa-star')) {
+  [...stars].forEach((star) => {
+    if (star.classList.contains('fa-star-o')) {
       star.classList.remove('fa-star-o');
       star.classList.add('fa-star');
     }
-  })
+  });
 
-  finish.style.display = 'none'; // This is needed when the player presses the retry button after finishing the game. 
   setUpBoard();
 }
 

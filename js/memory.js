@@ -1,10 +1,19 @@
+const icons = [
+'fa-diamond',
+'fa-home',
+'fa-heart',
+'fa-glass',
+'fa-gift',
+'fa-key',
+'fa-umbrella',
+'fa-suitcase',
+];
 const board = document.querySelector('.board');
-const cards = document.querySelectorAll('.card');
 const retry = document.querySelector('.fa-repeat');
 const finish = document.querySelector('.gameComplete');
 const moveCounter = document.querySelector('.moveCounter');
 const displayedTimer = document.querySelector('.timer');
-const numberOfCards = cards.length;
+const numberOfCards = icons.length * 2;
 let timeToDisplay;
 let cardsOpen; // This variable is set to true when 2 cards are flipped, so during this stage you can not flip other cards because flipCard() will not be executed after a click.
 let flippedCards; // When flippedCards has a length of 2, the logic of comparing the cards needs to be executed.
@@ -32,7 +41,7 @@ function setUpBoard() {
   moveCounter.innerHTML = `${moves} Moves`;
   displayedTimer.innerHTML = '00:00:00';
   
-  setOrderOfCards(randomArray);
+  setCards(randomArray);
 }
 
 function createRandomArray() {
@@ -58,13 +67,25 @@ function getRandomNumber() {
   return randomNumber;
 };
 
-function setOrderOfCards(randomArray) {
+function setCards(randomArray) {
   let i = 0;
-  cards.forEach((card) => {
-    card.style.order = randomArray[i]
+  icons.forEach((icon) => {
+    createCard(randomArray, icon, i);
+    i++;
+    createCard(randomArray, icon, i);
     i++;
   })
 };
+
+function createCard(randomArray, ic, i) {
+  const card = document.createElement('div');
+  const icon = document.createElement('div');
+  card.classList.add('card');
+  icon.classList.add('fa', ic, 'back');
+  card.style.order = randomArray[i];
+  card.appendChild(icon);
+  board.appendChild(card);
+}
 
 function flipCard(card) {
   if (moves === 0 && flippedCards.length === 0) {
@@ -133,16 +154,9 @@ function checkFilppedCards() {
 }
 
 function resetBoard() {
-  const openCards = document.querySelectorAll('.card--open');
   const stars = document.querySelector('.rating').children;
   finish.style.display = 'none'; // This is needed when the player presses the retry button after finishing the game. 
-
-  stopTimer();
-  
-  openCards.forEach((card) => {
-    card.className = '';
-    card.classList.add('card');
-  });
+  board.innerHTML = '';
 
   [...stars].forEach((star) => {
     if (star.classList.contains('fa-star-o')) {
@@ -150,12 +164,12 @@ function resetBoard() {
       star.classList.add('fa-star');
     }
   });
-
+  
+  stopTimer();
   setUpBoard();
 }
 
 function addMove() {
-  
   moves++;
   moveCounter.innerHTML = `${moves} Moves`;
   

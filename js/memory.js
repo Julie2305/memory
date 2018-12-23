@@ -10,6 +10,7 @@ let cardsOpen; // This variable is set to true when 2 cards are flipped, so duri
 let flippedCards; // When flippedCards has a length of 2, the logic of comparing the cards needs to be executed.
 let moves;
 let timer;
+let loseStar = 13;
 
 setUpBoard();
 
@@ -144,7 +145,7 @@ function resetBoard() {
 }
 
 function addMove() {
-  let loseStar = 13;
+  
   moves++;
   moveCounter.innerHTML = `${moves} Moves`;
   

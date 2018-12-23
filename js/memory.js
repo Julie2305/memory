@@ -1,12 +1,12 @@
 const icons = [
-'fa-diamond',
-'fa-home',
-'fa-heart',
-'fa-glass',
-'fa-gift',
-'fa-key',
-'fa-umbrella',
-'fa-suitcase',
+  'fa-diamond',
+  'fa-home',
+  'fa-heart',
+  'fa-glass',
+  'fa-gift',
+  'fa-key',
+  'fa-umbrella',
+  'fa-suitcase',
 ];
 const board = document.querySelector('.board');
 const retry = document.querySelector('.fa-repeat');
@@ -124,7 +124,7 @@ function checkFilppedCards() {
           stopTimer();
           let earnedStars = document.querySelectorAll('.fa-star').length;
           const congratulations = `<h3>Congratulations!</h3> 
-          <p>You have earned ${earnedStars} stars by finshing this game in ${moves} moves.</p>
+          <p>You have earned ${earnedStars} star(s) by finshing this game in ${moves} moves.</p>
           <p>Time to finish the game: ${timeToDisplay}</p>
           <p>Press the restart button to play again</p>`;
           finish.innerHTML = congratulations;
